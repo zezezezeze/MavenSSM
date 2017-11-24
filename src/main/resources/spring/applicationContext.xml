@@ -7,75 +7,84 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<!--配置service的包扫描，自动注入Service-->
-	<context:component-scan base-package="com.millery"/>
+	<!--配置service的包扫描，自动注入Service -->
+	<context:component-scan base-package="com.millery" />
 	<!-- 配置shiro -->
-    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-        <property name="realm" ref="userRealm"/>
-    </bean>
-    
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="userRealm" />
+	</bean>
 
-    
-      <!-- shiro filter -->
-    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
-        <!-- 安全管理器必须的 -->
-        <property name="securityManager" ref="securityManager"/>
-        <!-- 身份认证失败   认证提交的地址 -->
-        <property name="loginUrl" value="/user/login1.do"/>
-        <!-- 权限认证失败    没有权限认证提交的地址 -->
-        <property name="unauthorizedUrl" value="/unauthUrl.do"/>
-        <!-- 登录成功之后跳转访问的路径-->
-        <property name="successUrl" value="/user/successUrl.do"/>
-        <!-- Shiro连接约束配置,即过滤链的定义 -->
-	<!-- 	<property name="filters">
+
+
+	<!-- shiro filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器必须的 -->
+		<property name="securityManager" ref="securityManager" />
+		<!-- 身份认证失败 认证提交的地址 -->
+		<property name="loginUrl" value="/user/login1.do" />
+		<!-- 权限认证失败 没有权限认证提交的地址 -->
+		<property name="unauthorizedUrl" value="/unauthUrl.do" />
+		<!-- 登录成功之后跳转访问的路径 -->
+		<property name="successUrl" value="/user/successUrl.do" />
+		<!-- Shiro连接约束配置,即过滤链的定义 -->
+	 <!-- 	 <property name="filters"> 
 			<util:map>
-				<entry key="authc" value="formAuthenticationFilter"/>
+				 <entry key="authc" value-ref="formAuthenticationFilter"/> 
 			</util:map>
 		</property>  -->
 		<property name="filterChainDefinitions">
-		 <!-- Shiro连接约束配置,即过滤链的定义 -->  
-        <!-- 此处可配合这篇文章来理解各个过滤连的作用http://blog.csdn.net/jadyer/article/details/12172839 -->  
-        <!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->  
-        <!-- anon：它对应的过滤器里面是空的,什么都没做,这里.do和.jsp后面的*表示参数,比方说login.jsp?main这种 -->  
-        <!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->  
+			<!-- Shiro连接约束配置,即过滤链的定义 -->
+			<!-- 此处可配合这篇文章来理解各个过滤连的作用http://blog.csdn.net/jadyer/article/details/12172839 -->
+			<!-- 下面value值的第一个'/'代表的路径是相对于HttpServletRequest.getContextPath()的值来的 -->
+			<!-- anon：它对应的过滤器里面是空的,什么都没做,这里.do和.jsp后面的*表示参数,比方说login.jsp?main这种 -->
+			<!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
 			<value>
 				/user/login*=anon
 				/user/**=authc
 				/message/**=authc
 			</value>
 		</property>
-    </bean>
-    
-     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->  
-    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>  
+	</bean>
+
+
+	<!-- 用户授权信息Cache, 采用EhCache -->
+	<!-- <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:resource/ehcache-shiro.xml" />
+	</bean> -->
+
+	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
 	
-	  <!-- 由于本例中并未使用Shiro注解,故注释掉这两个bean(个人觉得将权限通过注解的方式硬编码在程序中,查看起来不是很方便,没必要使用) -->  
-    <!--   
-    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" depends-on="lifecycleBeanPostProcessor"/>  
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">  
-        <property name="securityManager" ref="securityManager"/>  
-    </bean>  
-     -->  
-     
-     
+
+	<!-- 由于本例中并未使用Shiro注解,故注释掉这两个bean(个人觉得将权限通过注解的方式硬编码在程序中,查看起来不是很方便,没必要使用) -->
+	 <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
+		depends-on="lifecycleBeanPostProcessor"/>
+		 <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"> 
+		<property name="securityManager" ref="securityManager"/> </bean>
+ 
+
 	<!-- 文件上传配置支持 -->
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- 每次上传占用文件大小 -->
-		<property name="maxUploadSize" value="5242880"/>
+		<property name="maxUploadSize" value="5242880" />
 		<!-- 每次上传占用内存大小 -->
-		<property name="maxInMemorySize" value="4096"/>
+		<property name="maxInMemorySize" value="4096" />
 	</bean>
 	<!-- 错误页面跳转的配置，项目版本问题，无法使用prop -->
-	<bean id="exceptionmapping" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	<bean id="exceptionmapping"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		<property name="exceptionMappings">
 			<props>
-				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+				<prop
+					key="org.springframework.web.multipart.MaxUploadSizeExceededException">
 					error
 				</prop>
 			</props>
 		</property>
 	</bean>
-<!-- 使用spring自带的占位符替换功能 -->
+	<!-- 使用spring自带的占位符替换功能 -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<!-- 允许JVM参数覆盖 -->
@@ -90,7 +99,7 @@
 		</property>
 	</bean>
 
-	<!-- 数据库连接池 :dataSource-->
+	<!-- 数据库连接池 :dataSource -->
 	<bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource"
 		destroy-method="close">
 		<!-- 数据库驱动 -->
@@ -110,23 +119,23 @@
 		<!-- 每个分区最小的连接数 -->
 		<property name="minConnectionsPerPartition" value="5" />
 	</bean>
-	
+
 	<!-- 定义Mybatis的SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 定义数据源 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 指定mybatis全局配置文件 -->
-		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml"/>
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
 		<!-- 扫描mappers目录以及子目录下的所有xml文件 -->
-  		<property name="mapperLocations" value="classpath:mybatis/mappers/**/*.xml" />
-  		<!-- 别名扫描包 -->
-  		<property name="typeAliasesPackage" value="com.millery.domain"/>
+		<property name="mapperLocations" value="classpath:mybatis/mappers/**/*.xml" />
+		<!-- 别名扫描包 -->
+		<property name="typeAliasesPackage" value="com.millery.domain" />
 	</bean>
 	<aop:config expose-proxy="true">
-		<!--pointcut元素定义一个切入点，execution中的第一个星号 用以匹配方法的返回类型，
-			这里星号表明匹配所有返回类型。 com.abc.dao.*.*(..)表明匹配cn.millery.service包下的所有类的所有 
+		<!--pointcut元素定义一个切入点，execution中的第一个星号 用以匹配方法的返回类型， 这里星号表明匹配所有返回类型。 com.abc.dao.*.*(..)表明匹配cn.millery.service包下的所有类的所有 
 			方法 -->
-		<aop:pointcut id="myPointcut" expression="execution(* com.millery.services.*.*(..))" />
+		<aop:pointcut id="myPointcut"
+			expression="execution(* com.millery.services.*.*(..))" />
 		<!--将定义好的事务处理策略应用到上述的切入点 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
 	</aop:config>
@@ -154,19 +163,19 @@
 			<tx:method name="*" />
 		</tx:attributes>
 	</tx:advice>
-	<!-- 定义数据库的事务控制，本事务 控制直接针对于数据库连接进行操作-->
+	<!-- 定义数据库的事务控制，本事务 控制直接针对于数据库连接进行操作 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<!-- 定义Mapper接口扫描器 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	     <property name="basePackage" value="com.millery.mapper" />
+		<property name="basePackage" value="com.millery.mapper" />
 	</bean>
-	
-	 <!-- 缓存 -->
-  <!--   <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-        <property name="configLocation" value="classpath:${ehcache.file}"></property>
-    </bean> -->
+
+	<!-- 缓存 -->
+	<!-- <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"> 
+		<property name="configLocation" value="classpath:${ehcache.file}"></property> 
+		</bean> -->
 </beans>

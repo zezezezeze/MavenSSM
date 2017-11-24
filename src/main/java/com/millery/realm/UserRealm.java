@@ -81,10 +81,5 @@ public class UserRealm extends AuthorizingRealm {
 
 		}
 	}
-	@Bean
-	public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
-		DefaultAdvisorAutoProxyCreator creator = new DefaultAdvisorAutoProxyCreator();
-		creator.setProxyTargetClass(true);
-		return creator;
-	}
+	
 }
