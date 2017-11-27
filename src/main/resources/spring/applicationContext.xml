@@ -9,9 +9,15 @@
 
 	<!--配置service的包扫描，自动注入Service -->
 	<context:component-scan base-package="com.millery" />
+	
+	<!-- 用户授权信息Cache, 采用EhCache -->
+<!-- 	<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile" value="classpath:spring/ehcache.xml" />
+	</bean> -->
 	<!-- 配置shiro -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="userRealm" />
+<!-- 		<property name="cacheManager" ref="cacheManager" /> -->
 	</bean>
 
 
@@ -47,15 +53,10 @@
 	</bean>
 
 
-	<!-- 用户授权信息Cache, 采用EhCache -->
-	<!-- <bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-		<property name="cacheManagerConfigFile" value="classpath:resource/ehcache-shiro.xml" />
-	</bean> -->
+	
 
 	<!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
-
-	
 
 	<!-- 由于本例中并未使用Shiro注解,故注释掉这两个bean(个人觉得将权限通过注解的方式硬编码在程序中,查看起来不是很方便,没必要使用) -->
 	 <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
