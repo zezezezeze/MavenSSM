@@ -15,6 +15,7 @@ public class TbUser implements Serializable {
 	private String password;
 	private Integer roleId;
 	private String groupId;
+	private String image;
 	public TbUser() {
 		// TODO Auto-generated constructor stub
 	}
@@ -71,11 +72,20 @@ public class TbUser implements Serializable {
 		this.groupId = groupId;
 	}
 
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "TbUser [id=" + id + ", userName=" + userName + ", realName="
 				+ realName + ", password=" + password + ", roleId=" + roleId
-				+ ", groupId=" + groupId + "]";
+				+ ", groupId=" + groupId + ", image=" + image + "]";
 	}
 
 	
