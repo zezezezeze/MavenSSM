@@ -9,23 +9,27 @@ import java.io.Serializable;
  */
 @SuppressWarnings("serial")
 public class TbUser implements Serializable {
-	private Integer id;
+	private Long id;
 	private String userName;
 	private String realName;
 	private String password;
 	private Integer roleId;
-
+	private String groupId;
 	public TbUser() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+
+
+	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 	public String getUserName() {
 		return userName;
@@ -59,11 +63,20 @@ public class TbUser implements Serializable {
 		this.roleId = roleId;
 	}
 
+	public String getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(String groupId) {
+		this.groupId = groupId;
+	}
+
 	@Override
 	public String toString() {
 		return "TbUser [id=" + id + ", userName=" + userName + ", realName="
 				+ realName + ", password=" + password + ", roleId=" + roleId
-				+ "]";
+				+ ", groupId=" + groupId + "]";
 	}
 
+	
 }

@@ -17,25 +17,27 @@
 	<mvc:default-servlet-handler />
 	<!-- 定义不被SpringMVC拦截的静态资源 -->
 	<mvc:resources location="/static/" mapping="/static/**" />
+	<bean
+		class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" />
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="com.millery.util.file.UserException">error</prop>
+			</props>
+		</property>
+	</bean>
+
 	<!--定义Controller扫描包,用户扫描Controller并创建代理对象 -->
 	<context:annotation-config />
 	<!-- AOP式方法级权限检查 -->
-	<!-- <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="userRealm" />
-	</bean>
-	保证实现了Shiro内部lifecycle函数的bean执行
-	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
-	支持Shiro对Controller的方法级AOP安全控制 begin
-	<bean
-		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-		depends-on="lifecycleBeanPostProcessor">
-		<property name="proxyTargetClass" value="true" />
-	</bean>
-	<bean id="authorizationAttributeSourceAdvisor"
-		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-		<property name="securityManager" ref="securityManager" />
-	</bean>
- -->
+	<!-- <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"> 
+		<property name="realm" ref="userRealm" /> </bean> 保证实现了Shiro内部lifecycle函数的bean执行 
+		<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" 
+		/> 支持Shiro对Controller的方法级AOP安全控制 begin <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" 
+		depends-on="lifecycleBeanPostProcessor"> <property name="proxyTargetClass" 
+		value="true" /> </bean> <bean id="authorizationAttributeSourceAdvisor" class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"> 
+		<property name="securityManager" ref="securityManager" /> </bean> -->
 
 	<!-- 视图解析器 解析jsp解析，默认使用jstl标签，classpath下的得有jstl的包 -->
 	<bean

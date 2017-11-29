@@ -1,30 +1,20 @@
 package com.millery.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresGuest;
-import org.apache.shiro.subject.Subject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
 
-
-
-
-
-
-
-import com.millery.domain.User;
+import com.millery.domain.TbUser;
 import com.millery.services.AbstractAction;
 import com.millery.services.UserDaoService;
-
+import com.millery.util.md5.Md5Util;
 
 /**
  * @author Jack
@@ -32,85 +22,79 @@ import com.millery.services.UserDaoService;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController extends AbstractAction{ 
+public class UserController extends AbstractAction {
 	@Autowired
-    UserDaoService userDaoService=null;
+	UserDaoService userDaoService = null;
+
 	@RequestMapping("/index")
 	public String main() {
 		return "/user/index";
 	}
-	
-	 @RequestMapping("/login1")
-	    public String view() {
-	        return "login";
+
+	@RequestMapping("/addphoto")
+	public String main1() {
+		return "/user/addPhoto";
 	}
-	 @RequestMapping("/addphoto")
-		public String main1() {
-			return "/user/addPhoto";
-		}
-	 /**
+
+	/**
+	 * 上传图片
+	 * 
 	 * @param photoFile
 	 * @return
 	 */
 	@RequestMapping("/add")
-	 public String Add(MultipartFile photoFile,HttpServletRequest request){
-		// 图片不为空时进行保存 
+	public String Add(MultipartFile photoFile, HttpServletRequest request) {
+		// 图片不为空时进行保存
 		if (!photoFile.isEmpty()) {
-			 String flieName = super.creratFileName(photoFile);
-			 super.saveFile(photoFile, flieName, request);
-		 }
-		return "/user/index";
-	 }
-	@RequestMapping("/addUser")
-	 public String AddUser(User user){
-		if(user.getU_Id()!=null){
-			userDaoService.insertUser(user);
+			String flieName = super.creratFileName(photoFile);
+			super.saveFile(photoFile, flieName, request);
 		}
-		return null;
-	 }
-	
-	
-	 /**
-	 * 用户登录方法
-	 * @param model 实体类
-	 * @param session
-	 * @return User
-	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	    public ModelAndView login(User model, HttpSession session) {
-	        User user = userDaoService.getUser(model.getU_phone());
+		return "/user/index";
+	}
 
-	        if (user == null || !user.getU_password().equals(model.getU_password())) {
-	            return new ModelAndView("redirect:/user/user/login.do");
-	        } else {
-	            session.setAttribute("user", user);
-	            ModelAndView mav = new ModelAndView();
-	            mav.setViewName("redirect:/user/user/index.do");
-	            return mav;
-	        }
-	    }
 	@Override
 	public String getFileUploadDir() {
 		// TODO Auto-generated method stub
 		return "/uplode/emp";
 	}
 
-	    @RequestMapping("/successUrl")
-	    public String  name2() {
-			return "/user/success";
+	/**
+	 * 以下两个方法执行添加新用户操作
+	 * 
+	 * @return 添加结果
+	 */
+	@RequestMapping(value = "/addUser", method = RequestMethod.GET)
+	public String AddUserGet() {
+		return "/user/addUser";
+	}
+
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String AddUser(TbUser user) {
+		try{
+			Date date = new Date();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+			String time = formatter.format(date);
+			long id = Long.parseLong(time);
+			// 默认密码都是123456
+			user.setId(id);
+			String pwMd5 = Md5Util.md5("123456");
+			user.setPassword(pwMd5);
+			user.setRoleId(2);
+			userDaoService.insertTbUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	    @RequestMapping(value="/loginyz", method = RequestMethod.POST)
-	    @RequiresGuest
-	    public String login(User user,Model model){
-	        Subject subject = SecurityUtils.getSubject();
-	        UsernamePasswordToken usernamePasswordToken = new  UsernamePasswordToken(user.getU_phone(),user.getU_password());
-	        try {
-	            subject.login(usernamePasswordToken);
-	            return "redirect:/user/success.do";
-	        } catch (Exception e) {
-	            //model.addAttribute("msg", "用户名或者密码错误,登陆失败");
-	            e.printStackTrace();
-	            return "redirect:/user/index.do";
-	        }
-	    }
+		return "redirect:/user/addUser.do";
+	}
+
+	@RequestMapping("/success")
+	public String success() {
+		return "/user/success";
+	}
+	@RequestMapping(value="/pwdUpdate",method=RequestMethod.POST)
+	public String pwdUptate(){
+		
+		return "";
+	}
+	
 }

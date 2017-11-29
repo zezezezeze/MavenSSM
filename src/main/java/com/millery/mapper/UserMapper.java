@@ -1,13 +1,13 @@
 package com.millery.mapper;
 
+import java.util.Map;
 import java.util.Set;
 
-import com.millery.domain.User;
 
 public interface UserMapper {
-	public User queryByUsername(String u_phone);
 
-	public boolean insertUser(User user);
+	
+	public boolean updatePwd(Map<String, String> map);
 
 	public Set<String> queryRolesByName(String u_phone);
 	

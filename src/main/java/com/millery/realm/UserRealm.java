@@ -20,8 +20,9 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import com.millery.domain.User;
+import com.millery.domain.TbUser;
 import com.millery.services.UserDaoService;
+import com.millery.util.md5.Md5Util;
 
 
 @Component
@@ -41,7 +42,7 @@ public class UserRealm extends AuthorizingRealm {
 		logger.info("======用户授权认证======");
 		String phone = principalCollection.getPrimaryPrincipal().toString();
 		SimpleAuthorizationInfo auth = new SimpleAuthorizationInfo();
-		try {
+	/*	try {
 			Map<String, Object> map = this.userService.listAuthByUser(phone);
 			Set<String> allRoles = (Set<String>) map.get("allRoles");
 			Set<String> allActions = (Set<String>) map.get("allActions");
@@ -50,7 +51,7 @@ public class UserRealm extends AuthorizingRealm {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		return auth;
 	}
@@ -63,14 +64,13 @@ public class UserRealm extends AuthorizingRealm {
 			AuthenticationToken authenticationToken) {
 		logger.info("======用户登陆认证======");
 		String userName = authenticationToken.getPrincipal().toString();
-		User user = userService.getUser(userName);
+		TbUser user = userService.queryTbUserByUsername(userName);
 		if (user != null) {
 			String password = new String(
 					(char[]) authenticationToken.getCredentials());
-
-			if (user.getU_password().equals(password)) {
+			if (user.getPassword().equals(password)) {
 				AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
-						user.getU_phone(), user.getU_password(), "userRealm");
+						user.getUserName(), user.getPassword(), "userRealm");
 				return authenticationInfo;
 			} else {
 				throw new IncorrectCredentialsException("密码错误");

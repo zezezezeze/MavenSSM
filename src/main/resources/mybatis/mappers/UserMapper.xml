@@ -2,27 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.millery.mapper.UserMapper">
-    <select id="queryByUsername" parameterType="string" resultType="com.millery.domain.User">
-        select * from e_user where u_phone=#{u_phone}
+    <select id="updatePwd" parameterType="java.util.Map">
+    	update tb_user set password = #{password} where id = #{id}
     </select>
-    <insert id="insertUser" parameterType="User">
-    	INSERT INTO e_user (u_Id,u_Name,u_Sex,u_Age,u_phone,u_password)
-    	values (#{u_Id},#{u_Name},#{u_Sex},#{u_Age},#{u_phone},#{u_password});
-    </insert>
-    <select id="queryUserList" parameterType="java.util.Map" resultType="User">
-    SELECT u_Id,u_Name,u_Sex,u_Age,u_phone,u_password from e_user
-    <where>
-    	<if test="column !=null and keyWord !=null">
-    		${column} like #{keyWord}
-    	</if>
-    </where>
-    LIMIT #{start},#{lineSize}
-    </select>
-    <select id="queryRolesByName" resultType="java.lang.String" parameterType="java.lang.String">
-        SELECT roleName FROM role where id in (select role from e_user where u_phone=#{u_phone})
-    </select>
-    
-    <select id="queryActionByName" resultType="java.lang.String" parameterType="java.lang.String">
-        SELECT roleName FROM role_quanxian where roleId in ( SELECT id FROM role where id in (select role from e_user where u_phone=#{u_phone}))
-    </select>
+   
 </mapper>

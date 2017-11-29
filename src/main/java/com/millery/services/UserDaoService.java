@@ -3,12 +3,13 @@ package com.millery.services;
 import java.util.Map;
 import java.util.Set;
 
-import com.millery.domain.User;
+import com.millery.domain.TbUser;
 
 public interface UserDaoService {
-	public User getUser(String phone);
+	public TbUser queryTbUserByUsername(String userName);
 
-	public boolean insertUser(User user);
+	public boolean insertTbUser(TbUser tbUser);
 
-	public Map<String,Object> listAuthByUser(String phone) throws Exception;
+	public boolean updatePwd(Map<String, String> map);
+	//public Map<String,Object> listAuthByUser(String phone) throws Exception;
 }
