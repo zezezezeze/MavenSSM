@@ -14,6 +14,16 @@
     <link href="<%=request.getContextPath()%>/static/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+       <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="<%=request.getContextPath()%>/static/js/jquery-1.10.2.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="<%=request.getContextPath()%>/static/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="<%=request.getContextPath()%>/static/js/jquery.metisMenu.js"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="<%=request.getContextPath()%>/static/js/custom.js"></script>
+    
 </head>
 <body>
     <div id="wrapper">
@@ -103,16 +113,7 @@ font-size: 16px;"> Last access : 30 May 2014 &nbsp; <a href="#" class="btn btn-d
         </nav>  
         </div>
      <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script src="<%=request.getContextPath()%>/static/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS -->
-    <script src="<%=request.getContextPath()%>/static/js/bootstrap.min.js"></script>
-    <!-- METISMENU SCRIPTS -->
-    <script src="<%=request.getContextPath()%>/static/js/jquery.metisMenu.js"></script>
-      <!-- CUSTOM SCRIPTS -->
-    <script src="<%=request.getContextPath()%>/static/js/custom.js"></script>
-    
+
    
 </body>
 </html>

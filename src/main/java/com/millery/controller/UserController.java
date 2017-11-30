@@ -101,16 +101,4 @@ public class UserController extends AbstractAction {
 	}
 	
 	
-	@RequestMapping(value = "/userList", method = RequestMethod.POST)
-	public ModelAndView userList(@RequestParam(value = "cp", defaultValue = "1") int currentPage,
-			@RequestParam(value = "ls", defaultValue = "5") int lineSize,
-			@RequestParam(value = "col", defaultValue = "") String column,
-			@RequestParam(value = "kw", defaultValue = "") String keyWord){
-		
-		List<TbUser> tbUsers=userDaoService.queryTbUserList(column, keyWord, currentPage, lineSize);
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("userList");
-		mav.addObject(tbUsers);
-		return mav;
-	}
 }

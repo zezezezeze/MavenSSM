@@ -16,6 +16,8 @@ public class TbUser implements Serializable {
 	private Integer roleId;
 	private String groupId;
 	private String image;
+	private TbGroup tbGroup;
+	private TbRole tbRole;
 	public TbUser() {
 		// TODO Auto-generated constructor stub
 	}
@@ -86,6 +88,22 @@ public class TbUser implements Serializable {
 		return "TbUser [id=" + id + ", userName=" + userName + ", realName="
 				+ realName + ", password=" + password + ", roleId=" + roleId
 				+ ", groupId=" + groupId + ", image=" + image + "]";
+	}
+
+	public TbGroup getTbGroup() {
+		return tbGroup;
+	}
+
+	public void setTbGroup(TbGroup tbGroup) {
+		this.tbGroup = tbGroup;
+	}
+
+	public TbRole getTbRole() {
+		return tbRole;
+	}
+
+	public void setTbRole(TbRole tbRole) {
+		this.tbRole = tbRole;
 	}
 
 	
