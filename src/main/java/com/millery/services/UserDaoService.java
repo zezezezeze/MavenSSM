@@ -1,5 +1,6 @@
 package com.millery.services;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -10,6 +11,10 @@ public interface UserDaoService {
 
 	public boolean insertTbUser(TbUser tbUser);
 
-	public boolean updatePwd(Map<String, String> map);
+	public boolean updatePwd(Map<String, Object> map);
 	//public Map<String,Object> listAuthByUser(String phone) throws Exception;
+	
+	public boolean deleteTbUser(Long id);
+	
+	public List<TbUser> queryTbUserList(String column, String keyWord, Integer currentPage,Integer lineSize);
 }

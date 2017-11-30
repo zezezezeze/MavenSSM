@@ -5,5 +5,17 @@
     <select id="updatePwd" parameterType="java.util.Map">
     	update tb_user set password = #{password} where id = #{id}
     </select>
-   
+   	<select id="deleteTbUser" parameterType="Long">
+    	delete tb_user where id = #{id}
+    </select>
+    
+    <select id="queryTbUserList" parameterType="java.util.Map" resultType="TbUser">
+    SELECT * from tb_user
+    <where>
+    	<if test="column !=null and keyWord !=null">
+    		${column} like #{keyWord}
+    	</if>
+    </where>
+    LIMIT #{start},#{lineSize}
+    </select>
 </mapper>
