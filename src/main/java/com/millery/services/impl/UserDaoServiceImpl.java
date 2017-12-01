@@ -77,6 +77,12 @@ public class UserDaoServiceImpl implements UserDaoService {
 		return userMapper.updateUrlName(map);
 	}
 
+	@Override
+	public Map<String, Object> queryUserMessage(Long id) {
+		// TODO Auto-generated method stub
+		return userMapper.queryUserMessage(id);
+	}
+
 	
 
 

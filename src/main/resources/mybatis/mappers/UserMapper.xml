@@ -26,4 +26,10 @@
 	<select id="updateUrlName" parameterType="java.util.Map">
 		update tb_moudle set name = #{name} where id = #{id}
 	</select>
+	
+	<select id="queryUserMessage" parameterType="Long">
+		select u.id,u.userName,u.realName,r.roleName,g.classYear,g.classNum,g.classType
+		from tb_user u,tb_role r,tb_group g 
+		where u.roleId = r.id and u.groupId=g.id and u.id=#{id}
+	</select>
 </mapper>

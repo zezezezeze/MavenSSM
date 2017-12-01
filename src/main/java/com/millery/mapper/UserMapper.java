@@ -24,4 +24,6 @@ public interface UserMapper {
 	public List<TbMoudle> queryTbMoudleList();
 	
 	public boolean updateUrlName(Map<String, Object> map);
+	
+	public Map<String, Object> queryUserMessage(Long id);
 }

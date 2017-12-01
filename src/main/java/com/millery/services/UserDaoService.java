@@ -22,4 +22,6 @@ public interface UserDaoService {
 	public List<TbMoudle> queryTbMoudleList();
 	
 	public boolean updateUrlName(int id, String name);
+	
+	public Map<String, Object> queryUserMessage(Long id);
 }
