@@ -13,6 +13,8 @@
         <!-- CUSTOM STYLES-->
     <link href="<%=request.getContextPath()%>/static/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
+     <link rel="stylesheet"  media="screen" href="<%=request.getContextPath()%>/static/css/sweetalert.css">
+
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
        <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
@@ -23,6 +25,8 @@
     <script src="<%=request.getContextPath()%>/static/js/jquery.metisMenu.js"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="<%=request.getContextPath()%>/static/js/custom.js"></script>
+    <script src="<%=request.getContextPath()%>/static/js/sweetalert.min.js"></script>
+ 
     
 </head>
 <body>

@@ -67,7 +67,7 @@
 									<option>Four Vale</option>
 								</select>
 							</div>
-							<a href="#" class="btn btn-danger btn-lg">danger</a>
+							<a href="#" class="btn btn-danger btn-lg">SAVE</a>
 
 						</div>
 					</div>

@@ -9,6 +9,7 @@ import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.millery.domain.TbMoudle;
 import com.millery.domain.TbUser;
 import com.millery.mapper.UserMapper;
 import com.millery.mapper.ViewMapper;
@@ -61,6 +62,19 @@ public class UserDaoServiceImpl implements UserDaoService {
 		map.put("start", (currentPage - 1) * lineSize);
 		map.put("lineSize", lineSize);
 		return userMapper.queryTbUserList(map);
+	}
+
+	@Override
+	public List<TbMoudle> queryTbMoudleList() {
+		return userMapper.queryTbMoudleList();
+	}
+
+	@Override
+	public boolean updateUrlName(int id, String name) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("name", name);
+		return userMapper.updateUrlName(map);
 	}
 
 	
