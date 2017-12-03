@@ -14,7 +14,7 @@
 }
 
 #adduser {
-	margin-left: 74.5%;
+	margin-left: 87%;
 }
 
 #yema {
@@ -29,26 +29,18 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>User List</h2>
+					<h2>Class List</h2>
 					<hr />
 					<!-- Advanced Tables -->
 					<div class="panel panel-default">
-						<div class="panel-heading">User</div>
+						<div class="panel-heading">Class</div>
 						<div id="messagetable">
 							<div class="btn-group">
-								<button data-toggle="dropdown"
-									class="btn btn-default dropdown-toggle" aria-expanded="false">
-									查看用户类型 <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a onclick="type11(0)">All</a></li>
-									<li><a onclick="type11(2)">学生</a></li>
-									<li><a onclick="type11(3)">老师</a></li>
-									<li><a onclick="type11(4)">管理员</a></li>
-								</ul>
+							
+								
 							</div>
-							<a id="adduser" href="/MavenSSMJack1/manager/addUser.do"
-								class="btn btn-success btn-lg">Add User</a>
+							<a id="adduser" href="/MavenSSMJack1/manager/addClass.do"
+								class="btn btn-success btn-lg">Add Class</a>
 						</div>
 						<div class="panel-body">
 							<div class="table-responsive">
@@ -56,23 +48,21 @@
 									id="dataTables-example">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>RealName</th>
-											<th>Type</th>
-											<th>updatePwd</th>
+											<th>Id</th>
+											<th>classType</th>
+											<th>classYear</th>
+											<th>classNum</th>
 											<th>delete</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${userList}" var="um">
+										<c:forEach items="${classList}" var="um">
 											<tr class="odd gradeX">
-												<td>${um.userName }</td>
-												<td>${um.realName }</td>
-												<td>${um.roleId }</td>
-												<td class="center"><button class="btn btn-primary"
-														onclick="updatePwd('${um.id }')">
-														<i class="fa fa-edit "></i> Update
-													</button></td>
+												<td class="center">${um.id }</td>
+												<td>${um.classType }</td>
+												<td>${um.classYear }</td>
+												<td>${um.classNum }</td>
+												
 												<td class="center"><button class="btn btn-danger"
 														onclick="deletea('${um.id }')">
 														<i class="fa fa-pencil"></i> Delete
@@ -85,12 +75,11 @@
 							<div id="yema">
 								<a onclick="yeyeyeshang()" class="btn btn-default btn-sm">上一页</a>
 								<a onclick="yeyeyexia()" class="btn btn-default btn-sm">下一页</a>
-								共${userCount}页
+								共${classCount}页
 							</div>
 						</div>
 					</div>
 					<!--End Advanced Tables -->
-
 				</div>
 
 			</div>
@@ -111,55 +100,30 @@
 		$(document).ready(function() {
 			$('#dataTables-example').dataTable();
 		});
-		function type11(t) {
-			if (t != "0") {
-				location.href = "/MavenSSMJack1/manager/userList.do?kw=" + t;
-			} else {
-				location.href = "/MavenSSMJack1/manager/userList.do";
-			}
-		}
-		function yeyeyexia1() {
-
-			alert(GetQueryString("cp"));
-
-		}
 		function yeyeyexia() {
 			var ye = GetQueryString("cp");
-			var typ = GetQueryString("kw");
-			var end = $
-			{
-				userCount
-			}
-			;
+			var end = ${classCount};
 			if (ye == null) {
 				ye = 1;
 			}
 			if (parseInt(ye) + 1 > end) {
 				return;
 			}
-
-			if (typ == null) {
-				typ = "";
-			}
-			location.href = "/MavenSSMJack1/manager/userList.do?cp="
-					+ (parseInt(ye) + 1) + "&kw=" + typ;
+			location.href = "/MavenSSMJack1/manager/classList.do?cp="
+					+ (parseInt(ye) + 1);
 		}
 		function yeyeyeshang() {
 			var ye = GetQueryString("cp");
-			var typ = GetQueryString("kw");
 			if (ye == null || ye == 1) {
 				ye = 1;
 				return;
 			}
-			if (typ == null) {
-				typ = "";
-			}
-			location.href = "/MavenSSMJack1/manager/userList.do?cp="
-					+ (parseInt(ye) - 1) + "&kw=" + typ;
+			location.href = "/MavenSSMJack1/manager/classList.do?cp="
+					+ (parseInt(ye) - 1);
 		}
 		function deletea(id1) {
 			swal({
-				title : "您确定要删除该用户吗",
+				title : "您确定要删除该班级吗",
 				text : "删除后无法恢复,请谨慎操作！",
 				type : "warning",
 				showCancelButton : true,
@@ -173,7 +137,7 @@
 
 					$.ajax({
 						type : "GET",
-						url : "/MavenSSMJack1/manager/deleteUser.do",
+						url : "/MavenSSMJack1/manager/deleteClass.do",
 						dataType : "json",
 						data : {
 							id : id1
@@ -199,51 +163,8 @@
 				}
 			})
 		}
-		function updatePwd(id1) {
-			swal({
-				title : "你确定要修改该用户的密码吗？",
-				text : "请填写新密码:",
-				type : "input",
-				showCancelButton : true,
-				closeOnConfirm : false,
-				animation : "slide-from-top",
-				inputPlaceholder : "Write something"
-			}, function(inputValue) {
-				if (inputValue === false)
-					return false;
-
-				if (inputValue === "") {
-					swal.showInputError("请填写新密码");
-					return false
-				}
-				if (inputValue) {
-					$.ajax({
-						type : "POST",
-						url : "/MavenSSMJack1/user/updatePwd.do",
-						data : {
-							id : id1,
-							pwd : inputValue
-						},
-						dataType : "json",
-						async : false,
-						success : function(data) {
-							var obj = eval(data);
-							if (obj) {
-								swal("好的!", "修改成功");
-								location.reload();
-							} else {
-								swal("Error", "修改失败");
-							}
-						},
-						error : function() {
-							swal("Error", "未知的错误发生了");
-						}
-
-					});
-				}
-
-			});
-		}
+		
+		
 
 		function GetQueryString(name) {
 			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");

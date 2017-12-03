@@ -22,48 +22,27 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Add User</h2>
+					<h2>Add Class</h2>
 					<div class="panel panel-default">
 
-						<div class="panel-heading">User</div>
+						<div class="panel-heading">Class</div>
 						<div id="message">
 							<div class="form-group">
-								<label>User Name</label> <input id="userName"
-									class="form-control" name="userName">
+								<label>Class Year</label> <input id="classYear"
+									class="form-control" name="classYear">
 								<p class="help-block">requird.</p>
 							</div>
 							<div class="form-group">
-								<label>Real Name</label> <input id="realName"
-									class="form-control" nama="realName">
+								<label>Class Num</label> <input id="classNum"
+									class="form-control" nama="classNum">
 								<p class="help-block">requird.</p>
 							</div>
 							<div class="form-group">
-								<label>User Type</label>
-								<div class="radio">
-									<label> <input type="radio" name="roleId"
-										id="optionsRadios1" value="2" checked="">学生
-									</label>
-								</div>
-								<div class="radio">
-									<label> <input type="radio" name="roleId"
-										id="optionsRadios2" value="3">教师
-									</label>
-								</div>
-								<div class="radio">
-									<label> <input type="radio" name="roleId"
-										id="optionsRadios3" value="4">管理员
-
-									</label>
-								</div>
+								<label>Class Type</label> <input id="classType"
+									class="form-control" nama="classType">
+								<p class="help-block">requird.</p>
 							</div>
-							<div class="form-group">
-								<label>学生班级</label> <select class="form-control" id="sss" >
-									<c:forEach items="${tbGroupList}" var="um">
-										<tr class="odd gradeX">
-											<option value="${um.id}">专业：${um.classType}-年级：${um.classYear}-班级：${um.classNum} </option>
-									</c:forEach>
-								</select>
-							</div>
+							
 							<a class="btn btn-danger btn-lg" onclick="save()">SAVE</a>
 
 						</div>
@@ -76,40 +55,21 @@
 	<script src="<%=request.getContextPath()%>/static/js/jquery-1.10.2.js"></script>
 	<script>
 		function save() {
-			var class1=$("#sss").val();
-			var username1 = $("#userName").val();
-			var realname1 = $("#realName").val();
-			var usertype = document.getElementsByName("roleId");
-			var type1;
-			for (var i = 0; i < usertype.length; i++) {
-				if (usertype[i].checked) {
-					type1 = usertype[i].value;
-				}
-			}
-
-			if (username1 == "") {
+			var classNum1=$("#classNum").val();
+			var classType1 = $("#classType").val();
+			var classYear1 = $("#classYear").val();
+			
+			if (classNum1 == "") {
 				return;
 			}
-			if (realname1 == "") {
+			if (classType1 == "") {
 				return;
 			}
-			if (usertype == "") {
+			if (classYear1 == "") {
 				return;
-			}
-			if(type1==2){
-				if(class1==3){
-					swal("waring", "请选择学生的班级！");
-					return;
-				}
-			}else{
-				if(class1!=3){
-					swal("waring", "请选择管理员项！");
-					return;
-				}
-				
 			}
 			swal({
-				title : "您确定要添加该用户吗",
+				title : "您确定要添加该班级吗",
 				text : "请谨慎操作！",
 				type : "warning",
 				showCancelButton : true,
@@ -122,12 +82,12 @@
 				if (isConfirm) {
 					$.ajax({
 						type : "POST",
-						url : "/MavenSSMJack1/manager/addUser.do",
+						url : "/MavenSSMJack1/manager/addClass.do",
 						dataType : "json",
 						data : {
-							userName : username1,
-							realName : realname1,
-							userType : type1
+							classYear : classYear1,
+							classNum : classNum1,
+							classType : classType1
 						},
 						async : false,
 						success : function(data) {

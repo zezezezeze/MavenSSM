@@ -9,6 +9,7 @@ import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.millery.domain.TbGroup;
 import com.millery.domain.TbMoudle;
 import com.millery.domain.TbUser;
 import com.millery.mapper.UserMapper;
@@ -82,6 +83,41 @@ public class UserDaoServiceImpl implements UserDaoService {
 		// TODO Auto-generated method stub
 		return userMapper.queryUserMessage(id);
 	}
+
+	@Override
+	public List<TbUser> queryTbUserCount(String column, String keyWord) {
+		Map<String, Object> map= new HashMap<String, Object>();
+		map.put("keyWord", "%"+keyWord+"%");
+		map.put("column", column);
+		return userMapper.queryTbUserCount(map);
+	}
+
+	@Override
+	public List<TbGroup> queryTbGruopList() {
+		// TODO Auto-generated method stub
+		return userMapper.queryTbGruopList();
+	}
+
+	@Override
+	public boolean deleteTbGroup(Integer id) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteTbGroup(id);
+	}
+
+	@Override
+	public List<TbGroup> queryTbGroupList(Integer currentPage, Integer lineSize) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", (currentPage - 1) * lineSize);
+		map.put("lineSize", lineSize);
+		return userMapper.queryTbGroupYeList(map);
+	}
+
+	@Override
+	public boolean insertTbGroup(TbGroup tbGroup) {
+		// TODO Auto-generated method stub
+		return userMapper.insertTbGroup(tbGroup);
+	}
+
 
 	
 

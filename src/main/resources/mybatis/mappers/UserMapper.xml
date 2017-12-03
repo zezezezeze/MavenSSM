@@ -2,12 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.millery.mapper.UserMapper">
-	<select id="updatePwd" parameterType="java.util.Map">
-		update tb_user set password = #{password} where id = #{id}
-	</select>
-	<select id="deleteTbUser" parameterType="Long">
-		delete tb_user where id = #{id}
-	</select>
+	<update id="updatePwd" parameterType="java.util.Map">
+		update tb_user set password
+		= #{password} where id = #{id}
+	</update>
+	<delete id="deleteTbUser" parameterType="Long">
+		delete from tb_user
+		where id = #{id}
+	</delete>
 
 	<select id="queryTbUserList" parameterType="java.util.Map"
 		resultType="TbUser">
@@ -19,17 +21,51 @@
 		</where>
 		LIMIT #{start},#{lineSize}
 	</select>
-
+	<select id="queryTbUserCount" parameterType="java.util.Map"
+		resultType="TbUser">
+		SELECT * from tb_user
+		<where>
+			<if test="column !=null and keyWord !=null">
+				${column} like #{keyWord}
+			</if>
+		</where>
+	</select>
+	<select id="queryTbGruopList" resultType="TbGroup">
+		select * from
+		tb_group
+	</select>
 	<select id="queryTbMoudleList" resultType="TbMoudle">
-		select * from tb_moudle
+		select * from
+		tb_moudle
 	</select>
-	<select id="updateUrlName" parameterType="java.util.Map">
-		update tb_moudle set name = #{name} where id = #{id}
-	</select>
-	
+	<update id="updateUrlName" parameterType="java.util.Map">
+		update tb_moudle set
+		name = #{name} where id = #{id}
+	</update>
+
+
 	<select id="queryUserMessage" parameterType="Long">
-		select u.id,u.userName,u.realName,r.roleName,g.classYear,g.classNum,g.classType
-		from tb_user u,tb_role r,tb_group g 
-		where u.roleId = r.id and u.groupId=g.id and u.id=#{id}
+		select
+		u.id,u.userName,u.realName,r.roleName,g.classYear,g.classNum,g.classType
+		from tb_user u,tb_role r,tb_group g
+		where u.roleId = r.id and
+		u.groupId=g.id and u.id=#{id}
+	</select>
+
+
+	<insert id="insertTbGroup" parameterType="TbGroup">
+    	INSERT INTO tb_group (classYear,classNum,classType)
+    	values (#{classYear},#{classNum},#{classType});
+    </insert>
+    
+	<delete id="deleteTbGroup" parameterType="Integer">
+		delete from tb_group
+		where id = #{id}
+	</delete>
+
+	<select id="queryTbGroupYeList" parameterType="java.util.Map"
+		resultType="TbGroup">
+		SELECT * from tb_group
+		LIMIT #{start},#{lineSize}
 	</select>
 </mapper>

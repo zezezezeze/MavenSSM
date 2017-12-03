@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.millery.domain.TbGroup;
 import com.millery.domain.TbMoudle;
 import com.millery.domain.TbUser;
 
@@ -24,4 +25,15 @@ public interface UserDaoService {
 	public boolean updateUrlName(int id, String name);
 	
 	public Map<String, Object> queryUserMessage(Long id);
+	
+	public List<TbUser> queryTbUserCount(String column,String keyWord);
+	
+	public List<TbGroup> queryTbGruopList();
+	
+	public boolean deleteTbGroup(Integer id);
+	
+	public List<TbGroup> queryTbGroupList(Integer currentPage,Integer lineSize);
+	
+	public boolean insertTbGroup(TbGroup tbGroup);
+
 }

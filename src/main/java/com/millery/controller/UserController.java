@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.millery.domain.TbUser;
 import com.millery.services.AbstractAction;
 import com.millery.services.UserDaoService;
+import com.millery.util.file.UserException;
 import com.millery.util.md5.Md5Util;
 
 /**
@@ -99,18 +100,17 @@ public class UserController extends AbstractAction {
 		return "/user/success";
 	}
 	@RequestMapping(value="/updatePwd",method=RequestMethod.POST)
-	public @ResponseBody boolean updatePwd(long id, String pwd){
+	public @ResponseBody String updatePwd(long id, String pwd){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
 		map.put("password", Md5Util.md5(pwd));
-		boolean flag = false;
 		try {
-			flag = userDaoService.updatePwd(map);
+			 userDaoService.updatePwd(map);
+			 return "true";
 		} catch (Exception e) {
 			// TODO: handle exception
-			e.printStackTrace();
+			 throw new UserException("密码修改失败！请换个姿势重新操作噢！");	
 		}
-		return flag;
 	}
 	
 	

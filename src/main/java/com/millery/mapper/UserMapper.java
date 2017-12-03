@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.millery.domain.TbGroup;
 import com.millery.domain.TbMoudle;
 import com.millery.domain.TbUser;
 
@@ -26,4 +27,14 @@ public interface UserMapper {
 	public boolean updateUrlName(Map<String, Object> map);
 	
 	public Map<String, Object> queryUserMessage(Long id);
+	
+	public List<TbUser> queryTbUserCount(Map<String, Object> map);
+	
+	public List<TbGroup> queryTbGruopList();
+	
+	public boolean deleteTbGroup(Integer id);
+	
+	public List<TbGroup> queryTbGroupYeList(Map<String, Object> map);
+	
+	public boolean insertTbGroup(TbGroup tbGroup);
 }
