@@ -99,7 +99,7 @@ public class ManagerController {
 		List<TbMoudle> tbMoudle = userDaoService.queryTbMoudleList();
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/manager/url");
-		mav.addObject("userList", tbMoudle);
+		mav.addObject("urlList", tbMoudle);
 		return mav;
 	}
 

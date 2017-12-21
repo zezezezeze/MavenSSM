@@ -126,11 +126,7 @@
 		function yeyeyexia() {
 			var ye = GetQueryString("cp");
 			var typ = GetQueryString("kw");
-			var end = $
-			{
-				userCount
-			}
-			;
+			var end = ${userCount};
 			if (ye == null) {
 				ye = 1;
 			}

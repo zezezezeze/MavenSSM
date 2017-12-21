@@ -21,17 +21,14 @@
 		<div id="page-inner">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>User List</h2>
+					<h2>Url List</h2>
 					<hr />
 					<!-- Advanced Tables -->
 					<div class="panel panel-default">
-						<div class="panel-heading">User</div>
+						<div class="panel-heading">Url</div>
 						<div id="messagetable">
 							<div class="btn-group">
-								<button data-toggle="dropdown"
-									class="btn btn-default dropdown-toggle" aria-expanded="false">
-									Defult<span class="caret"></span>
-								</button>
+						
 							</div>
 						</div>
 						<div class="panel-body">
@@ -56,7 +53,7 @@
 												<td>${um.url }</td>
 												<td>${um.descripe }</td>
 												<td class="center"><button class="btn btn-danger"
-														onclick="updateName'${um.id }')">
+														onclick="updateName('${um.id }')">
 														<i class="fa fa-pencil"></i> Update
 													</button></td>
 											</tr>
@@ -117,10 +114,10 @@
 								success : function(data) {
 									var obj = eval(data);
 									if (obj) {
-										swal("好的!", "您填写了: " + inputValue, "修改成功");
+										swal("好的!", "修改成功");
 										location.reload();
 									} else {
-										swal("Error", "您填写了: " + inputValue, "修改失败");
+										swal("Error", "修改失败");
 									}
 								}
 
