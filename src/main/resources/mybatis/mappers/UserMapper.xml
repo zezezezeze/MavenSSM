@@ -68,4 +68,12 @@
 		SELECT * from tb_group
 		LIMIT #{start},#{lineSize}
 	</select>
+	<select id="queryTbGroupByid" parameterType="int"
+		resultType="TbGroup">
+		SELECT * from tb_group where id=#{id}
+	</select>
+	<select id="queryTbRoleByid" parameterType="int"
+		resultType="TbRole">
+		SELECT * from tb_role where id=#{id}
+	</select>
 </mapper>

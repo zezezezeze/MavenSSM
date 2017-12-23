@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.millery.domain.TbGroup;
 import com.millery.domain.TbMoudle;
+import com.millery.domain.TbRole;
 import com.millery.domain.TbUser;
 import com.millery.mapper.UserMapper;
 import com.millery.mapper.ViewMapper;
@@ -116,6 +117,18 @@ public class UserDaoServiceImpl implements UserDaoService {
 	public boolean insertTbGroup(TbGroup tbGroup) {
 		// TODO Auto-generated method stub
 		return userMapper.insertTbGroup(tbGroup);
+	}
+
+	@Override
+	public TbGroup queryTbGroupByid(int id) {
+		// TODO Auto-generated method stub
+		return userMapper.queryTbGroupByid(id);
+	}
+
+	@Override
+	public TbRole queryTbRoleByid(int id) {
+		// TODO Auto-generated method stub
+		return userMapper.queryTbRoleByid(id);
 	}
 
 

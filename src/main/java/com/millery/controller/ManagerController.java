@@ -4,6 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresGuest;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +44,11 @@ public class ManagerController {
 	public String main() {
 
 		return "/manager/main";
+	}
+	@RequestMapping("/login")
+	public String login() {
+
+		return "/manager/login";
 	}
 
 	@RequestMapping("/userList")
@@ -180,4 +193,36 @@ public class ManagerController {
 			throw new UserException("用户添加失败！请换个姿势重新操作噢！");
 		}
 	}
+	
+	@RequestMapping(value = "/loginyz", method = RequestMethod.POST)
+	@RequiresGuest
+	public String login(HttpServletRequest req) {
+		String userName = req.getParameter("userName");
+		String password = req.getParameter("password");
+		HttpSession session = req.getSession();
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(
+				userName, Md5Util.md5(password));
+		try {
+			session.setAttribute("userName",userName);
+			subject.login(usernamePasswordToken);
+			return "redirect:/manager/main.do";
+		} catch (Exception e) {
+			// model.addAttribute("msg", "用户名或者密码错误,登陆失败");
+			e.printStackTrace();
+			 throw new UserException("帐号或密码错误");	
+		}
+	}
+	@RequestMapping(value = "managertuichu", method = RequestMethod.GET)
+    public String tuichu(HttpServletRequest request, HttpServletResponse response)   {
+    	try {
+    		 HttpSession session = request.getSession(false);//防止创建Session  
+    	      
+    	        session.removeAttribute("userName");  
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+     
+        return "redirect:/manager/login.do";
+    }
 }

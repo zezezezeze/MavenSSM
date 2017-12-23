@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.millery.domain.TbGroup;
 import com.millery.domain.TbMoudle;
+import com.millery.domain.TbRole;
 import com.millery.domain.TbUser;
 
 
@@ -37,4 +38,8 @@ public interface UserMapper {
 	public List<TbGroup> queryTbGroupYeList(Map<String, Object> map);
 	
 	public boolean insertTbGroup(TbGroup tbGroup);
+	
+	public TbGroup queryTbGroupByid(int id);
+	
+	public TbRole queryTbRoleByid(int id);
 }

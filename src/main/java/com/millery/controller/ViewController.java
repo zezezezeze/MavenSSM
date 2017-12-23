@@ -3,6 +3,7 @@ package com.millery.controller;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Enumeration;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.millery.domain.TbGroup;
+import com.millery.domain.TbRole;
 import com.millery.domain.TbUser;
 import com.millery.services.UserDaoService;
 import com.millery.util.file.ImageUtil;
@@ -38,6 +42,37 @@ public class ViewController {
 	@RequestMapping("/login")
 	public String view() {
 		return "/view/login";
+	}
+	@RequestMapping("/viewMain")
+	public String viewmain() {
+		return "/view/viewMain";
+	}
+	@RequestMapping("/viewAbout")
+	public String viewAbout() {
+		return "/view/viewAbout";
+	}
+	@RequestMapping("/viewSidebar")
+	public String viewSidebar() {
+		return "/view/viewSidebar";
+	}
+	@RequestMapping("/viewContact")
+	public ModelAndView viewContact(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		ModelAndView modelAndView=new ModelAndView();
+		String name = (String) session.getAttribute("userName");
+		if (name != null &&name != "") {
+			TbUser user = userDaoService.queryTbUserByUsername(name);
+			TbGroup group = userDaoService.queryTbGroupByid(user.getGroupId());
+			TbRole role = userDaoService.queryTbRoleByid(user.getGroupId());
+			modelAndView.setViewName("/view/viewContact");
+			modelAndView.addObject("user", user);
+			modelAndView.addObject("group", group);
+			modelAndView.addObject("role", role);
+			
+		}else{
+			modelAndView.setViewName("/view/login");
+		}
+		return modelAndView;
 	}
 	
 	//生成验证码
@@ -92,11 +127,26 @@ public class ViewController {
 		try {
 			session.setAttribute("userName",userName);
 			subject.login(usernamePasswordToken);
-			return "redirect:/user/success.do";
+			return "redirect:/view/viewMain.do";
 		} catch (Exception e) {
 			// model.addAttribute("msg", "用户名或者密码错误,登陆失败");
 			e.printStackTrace();
 			 throw new UserException("帐号或密码错误");	
 		}
 	}
+
+
+    @RequestMapping(value = "tuichu", method = RequestMethod.GET)
+    public String tuichu(HttpServletRequest request, HttpServletResponse response)   {
+    	try {
+    		 HttpSession session = request.getSession(false);//防止创建Session  
+    	      
+    	          
+    	        session.removeAttribute("userName");  
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+     
+        return "redirect:/view/viewMain.do";
+    }
 }

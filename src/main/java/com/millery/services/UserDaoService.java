@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.millery.domain.TbGroup;
 import com.millery.domain.TbMoudle;
+import com.millery.domain.TbRole;
 import com.millery.domain.TbUser;
 
 public interface UserDaoService {
@@ -35,5 +36,9 @@ public interface UserDaoService {
 	public List<TbGroup> queryTbGroupList(Integer currentPage,Integer lineSize);
 	
 	public boolean insertTbGroup(TbGroup tbGroup);
+	
+	public TbGroup queryTbGroupByid(int id);
+	
+	public TbRole queryTbRoleByid(int id);
 
 }

@@ -14,10 +14,8 @@ public class TbUser implements Serializable {
 	private String realName;
 	private String password;
 	private Integer roleId;
-	private String groupId;
+	private Integer groupId;
 	private String image;
-	private TbGroup tbGroup;
-	private TbRole tbRole;
 	public TbUser() {
 		// TODO Auto-generated constructor stub
 	}
@@ -66,14 +64,16 @@ public class TbUser implements Serializable {
 		this.roleId = roleId;
 	}
 
-	public String getGroupId() {
+	
+
+
+	public Integer getGroupId() {
 		return groupId;
 	}
 
-	public void setGroupId(String groupId) {
+	public void setGroupId(Integer groupId) {
 		this.groupId = groupId;
 	}
-
 
 	public String getImage() {
 		return image;
@@ -90,21 +90,6 @@ public class TbUser implements Serializable {
 				+ ", groupId=" + groupId + ", image=" + image + "]";
 	}
 
-	public TbGroup getTbGroup() {
-		return tbGroup;
-	}
-
-	public void setTbGroup(TbGroup tbGroup) {
-		this.tbGroup = tbGroup;
-	}
-
-	public TbRole getTbRole() {
-		return tbRole;
-	}
-
-	public void setTbRole(TbRole tbRole) {
-		this.tbRole = tbRole;
-	}
 
 	
 }
