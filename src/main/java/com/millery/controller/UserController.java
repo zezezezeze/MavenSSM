@@ -51,13 +51,16 @@ public class UserController extends AbstractAction {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public String Add(MultipartFile photoFile, HttpServletRequest request) {
+	public String Add(MultipartFile photoFile, HttpServletRequest request,Long id) {
 		// 图片不为空时进行保存
 		if (!photoFile.isEmpty()) {
 			String flieName = super.creratFileName(photoFile);
-			super.saveFile(photoFile, flieName, request);
+			String fileString = super.saveFile(photoFile, flieName, request);
+			if(!"false".equals(fileString)){
+				userDaoService.updateUserImage(fileString.substring(81), id);
+			}
 		}
-		return "/user/index";
+		return "redirect:/view/viewContact.do";
 	}
 
 	@Override

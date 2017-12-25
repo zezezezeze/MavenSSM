@@ -131,6 +131,15 @@ public class UserDaoServiceImpl implements UserDaoService {
 		return userMapper.queryTbRoleByid(id);
 	}
 
+	@Override
+	public void updateUserImage(String file,Long id) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("image", file);
+		userMapper.updateUserImage(map);
+	}
+
 
 	
 

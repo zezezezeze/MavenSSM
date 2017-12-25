@@ -63,7 +63,7 @@ public class ViewController {
 		if (name != null &&name != "") {
 			TbUser user = userDaoService.queryTbUserByUsername(name);
 			TbGroup group = userDaoService.queryTbGroupByid(user.getGroupId());
-			TbRole role = userDaoService.queryTbRoleByid(user.getGroupId());
+			TbRole role = userDaoService.queryTbRoleByid(user.getRoleId());
 			modelAndView.setViewName("/view/viewContact");
 			modelAndView.addObject("user", user);
 			modelAndView.addObject("group", group);

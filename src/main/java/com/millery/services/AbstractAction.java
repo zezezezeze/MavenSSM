@@ -30,22 +30,23 @@ public abstract class AbstractAction {
 	 * 
 	 * @param photoFile
 	 */
-	public boolean saveFile(MultipartFile photoFile, String fileName,
+	public String saveFile(MultipartFile photoFile, String fileName,
 			HttpServletRequest request) {
 		String filePath = request.getServletContext().getRealPath(
 				this.getFileUploadDir())
 				+ fileName;
 		if (!photoFile.isEmpty()) {
 			try {
-				return UploadFileUtil.save(photoFile.getInputStream(),
+				UploadFileUtil.save(photoFile.getInputStream(),
 						new File(filePath));
+				return filePath;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				return false;
+				return "false";
 			}
 		} else {
-			return false;
+			return "false";
 		}
 
 	}

@@ -42,4 +42,6 @@ public interface UserMapper {
 	public TbGroup queryTbGroupByid(int id);
 	
 	public TbRole queryTbRoleByid(int id);
+	
+	public void updateUserImage(Map<String, Object> map);
 }

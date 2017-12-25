@@ -76,4 +76,9 @@
 		resultType="TbRole">
 		SELECT * from tb_role where id=#{id}
 	</select>
+	
+		<update id="updateUserImage" parameterType="java.util.Map">
+		update tb_user set
+		image = #{image} where id = #{id}
+	</update>
 </mapper>

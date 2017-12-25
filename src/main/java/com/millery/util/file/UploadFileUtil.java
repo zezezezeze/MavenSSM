@@ -8,6 +8,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.millery.mapper.UserMapper;
+import com.millery.services.UserDaoService;
+
 
 /**
  * 文件保存处理

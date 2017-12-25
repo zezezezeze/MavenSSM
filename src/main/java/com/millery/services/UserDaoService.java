@@ -41,4 +41,5 @@ public interface UserDaoService {
 	
 	public TbRole queryTbRoleByid(int id);
 
+	public void updateUserImage(String file,Long id);
 }
