@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.millery.domain.TbGroup;
+import com.millery.domain.TbMoudle;
 import com.millery.domain.TbRole;
 import com.millery.domain.TbUser;
 import com.millery.services.UserDaoService;
@@ -40,26 +42,44 @@ public class ViewController {
 	UserDaoService userDaoService = null;
 
 	@RequestMapping("/login")
-	public String view() {
-		return "/view/login";
+	public ModelAndView view() {
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("/view/login");
+		 List<TbMoudle> tbMoudle = userDaoService.queryTbMoudleList();
+		 modelAndView.addObject("urlList", tbMoudle);
+		return modelAndView;
 	}
 	@RequestMapping("/viewMain")
-	public String viewmain() {
-		return "/view/viewMain";
+	public ModelAndView viewmain() {
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("/view/viewMain");
+		 List<TbMoudle> tbMoudle = userDaoService.queryTbMoudleList();
+		 modelAndView.addObject("urlList", tbMoudle);
+		return modelAndView;
 	}
 	@RequestMapping("/viewAbout")
-	public String viewAbout() {
-		return "/view/viewAbout";
+	public ModelAndView viewAbout() {
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("/view/viewAbout");
+		 List<TbMoudle> tbMoudle = userDaoService.queryTbMoudleList();
+		 modelAndView.addObject("urlList", tbMoudle);
+		return modelAndView;
 	}
 	@RequestMapping("/viewSidebar")
-	public String viewSidebar() {
-		return "/view/viewSidebar";
+	public ModelAndView viewSidebar() {
+		ModelAndView modelAndView=new ModelAndView();
+		modelAndView.setViewName("/view/viewSidebar");
+		 List<TbMoudle> tbMoudle = userDaoService.queryTbMoudleList();
+		 modelAndView.addObject("urlList", tbMoudle);
+		return modelAndView;
 	}
 	@RequestMapping("/viewContact")
 	public ModelAndView viewContact(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		ModelAndView modelAndView=new ModelAndView();
 		String name = (String) session.getAttribute("userName");
+		 List<TbMoudle> tbMoudle = userDaoService.queryTbMoudleList();
+		 modelAndView.addObject("urlList", tbMoudle);
 		if (name != null &&name != "") {
 			TbUser user = userDaoService.queryTbUserByUsername(name);
 			TbGroup group = userDaoService.queryTbGroupByid(user.getGroupId());

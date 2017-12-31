@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录</title>
+<title>main</title>
 <style type="text/css">
 	#top{
 		margin-top:7.4%;
@@ -17,9 +17,8 @@
 	<header id="head">
 		<div class="container">
 			<div class="row">
-				<h1 class="lead">AWESOME, CUSTOMIZABLE, FREE</h1>
-				<p class="tagline">PROGRESSUS: free business bootstrap template by <a href="http://www.gettemplate.com/?utm_source=progressus&amp;utm_medium=template&amp;utm_campaign=progressus">GetTemplate</a></p>
-				<p><a class="btn btn-default btn-lg" role="button">MORE INFO</a> <a class="btn btn-action btn-lg" role="button">DOWNLOAD NOW</a></p>
+				<h1 class="lead">QD UNIVERSITY</h1>
+				<p class="tagline">Welcome to the official website of Qiingdao University </p>
 			</div>
 		</div>
 	</header>
@@ -40,31 +39,31 @@
 	<div class="jumbotron top-space">
 		<div class="container">
 			
-			<h3 class="text-center thin">Reasons to use this template</h3>
+			<h3 class="text-center thin">学校简介</h3>
 			
 			<div class="row">
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>Bootstrap-powered</h4></div>
+					<div class="h-caption"><h4><i class="fa fa-cogs fa-5"></i>实力</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
+						<p>位于山东省青岛市，是山东省属重点综合大学，入选国家“111计划”， 山东省与青岛市共建高校，教育部“卓越工程师教育培养计划”、“卓越医生教育培养计划”改革试点高校，教育部来华留学示范基地建设高校，中国政府奖学金来华留学生接收院校..</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>Fat-free</h4></div>
+					<div class="h-caption"><h4><i class="fa fa-flash fa-5"></i>未来发展</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam rerum repellendus laboriosam reprehenderit! </p>
+						<p>截至2017年5月，青岛大学共占地2715亩，固定资产27.6亿元，教学科研仪器设备总值4.05亿元，主办7种学术期刊；设有35个学院，1个医学部，开设102个本科专业，有9个博士后流动站，7个一级学科博士点，31个一级学科硕士点....</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>Creative Commons</h4></div>
+					<div class="h-caption"><h4><i class="fa fa-heart fa-5"></i>师资力量</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis?</p>
+						<p>截至2017年5月，学校有教职工3842人，其中，专任教师2505人，具有正高级专业技术资格者364人，副高级专业技术资格者734人。现有两院院士2人，中组部“千人计划”入选者7人，中科院“百人计划”人选5人，长江学者3人，国家杰青5人...。</p>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 highlight">
-					<div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>Author's support</h4></div>
+					<div class="h-caption"><h4><i class="fa fa-smile-o fa-5"></i>学科建设</h4></div>
 					<div class="h-body text-center">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias, excepturi, maiores, dolorem quasi reprehenderit illo accusamus nulla minima repudiandae quas ducimus reiciendis odio sequi atque temporibus facere corporis eos expedita? </p>
+						<p>截至2016年10月，学校有国家重点学科2个，山东省重点学科20个，山东省一流学科4个；有9个博士后流动站，7个一级学科博士点，47个二级学科博士点，涉及10个一级学科；31个一级学科硕士点，175个二级学科硕士点，涉及40个一级学科...</p>
 					</div>
 				</div>
 			</div> <!-- /row  -->
@@ -76,20 +75,20 @@
 	<!-- container -->
 	<div class="container">
 
-		<h2 class="text-center top-space">Frequently Asked Questions</h2>
+		<h2 class="text-center top-space">你有问题？</h2>
 		<br>
 
 		<div class="row">
 			<div class="col-sm-6">
 				<h3>Which code editor would you recommend?</h3>
-				<p>I'd highly recommend you <a href="http://www.sublimetext.com/">Sublime Text</a> - a free to try text editor which I'm using daily. Awesome tool!</p>
+				<p>I'd highly recommend you Sublime Text</a> - a free to try text editor which I'm using daily. Awesome tool!</p>
 			</div>
 			<div class="col-sm-6">
 				<h3>Nice header. Where do I find more images like that one?</h3>
 				<p>
 					Well, there are thousands of stock art galleries, but personally, 
-					I prefer to use photos from these sites: <a href="http://unsplash.com">Unsplash.com</a> 
-					and <a href="http://www.flickr.com/creativecommons/by-2.0/tags/">Flickr - Creative Commons</a></p>
+					I prefer to use photos from these sites:Unsplash.com</a> 
+					and Flickr - Creative Commons</a></p>
 			</div>
 		</div> <!-- /row -->
 
@@ -97,7 +96,7 @@
 			<div class="col-sm-6">
 				<h3>Can I use it to build a site for my client?</h3>
 				<p>
-					Yes, you can. You may use this template for any purpose, just don't forget about the <a href="http://creativecommons.org/licenses/by/3.0/">license</a>, 
+					Yes, you can. You may use this template for any purpose, just don't forget about the license</a>, 
 					which says: "You must give appropriate credit", i.e. you must provide the name of the creator and a link to the original template in your work. 
 				</p>
 			</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>main</title>
 </head>
 <style>
 	#body{
@@ -23,15 +23,13 @@ ssssss</div> -->
                 <div class="row">
                     <div class="col-md-12">
                      <h2>Blank Page</h2>   
-                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
+                        <h5>正在建设！敬请期待！</h5>
                        
                     </div>
                 </div>
-                 /. ROW 
                  <hr />
                
     </div>
-             /. PAGE INNER 
             </div>
          <!-- /. PAGE WRAPPER  -->
 </body>

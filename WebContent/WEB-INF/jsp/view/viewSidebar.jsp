@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录</title>
+<title>关于学校</title>
 <style type="text/css">
 
 </style>
@@ -59,13 +59,13 @@
 				<div class="row widget">
 					<div class="col-xs-12">
 						<h4>Lorem ipsum dolor sit</h4>
-						<p><img src="<%=request.getContextPath()%>/static/images/1.jpg" alt=""></p>
+						<p><img src="<%=request.getContextPath()%>/static/images/timg.jpg" alt=""></p>
 					</div>
 				</div>
 				<div class="row widget">
 					<div class="col-xs-12">
 						<h4>Lorem ipsum dolor sit</h4>
-						<p><img src="<%=request.getContextPath()%>/static/images/2.jpg" alt=""></p>
+						<p><img src="<%=request.getContextPath()%>/static/images/tushuguan.jpg" alt=""></p>
 						<p>Qui, debitis, ad, neque reprehenderit laborum soluta dolor voluptate eligendi enim consequuntur eveniet recusandae rerum? Atque eos corporis provident tenetur.</p>
 					</div>
 				</div>

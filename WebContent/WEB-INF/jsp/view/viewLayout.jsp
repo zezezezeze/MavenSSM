@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%><%@taglib prefix="c"
+	uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,10 +42,9 @@
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="viewMain.do">Home</a></li>
-					<li><a href="viewAbout.do">About</a></li>
-					<li><a href="viewSidebar.do">viewSidebar</a></li>	
-					<li><a href="viewContact.do">Contact</a></li>
+				<c:forEach items="${urlList}" var="um">
+					<li><a href="${um.url}">${um.name}</a></li>
+					</c:forEach>
 					<li>
 						     <%
                     Object name = session.getAttribute("userName");

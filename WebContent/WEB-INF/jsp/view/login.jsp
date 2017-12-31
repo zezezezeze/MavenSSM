@@ -71,7 +71,7 @@
 									name="password">
 							</div>
 							<div class="top-margin">
-								<label>验证码 <span class="text-danger">*</span></label> <input
+								<label>验证码(区分大小写) <span class="text-danger">*</span></label> <input
 									type="text" name="yzm" class="width70" class="form-control"> <img
 									src="<%=createImg%>"
 									onclick="this.src='/MavenSSMJack1/view/createImg.do?x='+Math.random();"
